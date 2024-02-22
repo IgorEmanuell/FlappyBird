@@ -1,18 +1,14 @@
 import pygame
 import os
 import random
-<<<<<<< HEAD
 import neat
 
 ai_jogando = True
 geracao = 0
-=======
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
 
 TELA_LARGURA = 500
 TELA_ALTURA = 800
 
-<<<<<<< HEAD
 
 IMAGEM_CANO = pygame.transform.scale2x(
     pygame.image.load(os.path.join("imgs", "pipe.png"))
@@ -32,19 +28,6 @@ IMAGEM_PASSARO = [
 pygame.font.init()
 FONTE_PONTOS = pygame.font.SysFont("arial", 50)
 
-=======
-IMAGEM_CANO = pygame.transform.scale2x(pygame.image.load(os.path.join('imgs','pipe.png')))
-IMAGEM_CHAO = pygame.transform.scale2x(pygame.image.load(os.path.join('imgs','base.png')))
-IMAGEM_BACKGROUND = pygame.transform.scale2x(pygame.image.load(os.path.join('imgs','bg.png')))
-IMAGEM_PASSARO = [
-    pygame.transform.scale2x(pygame.image.load(os.path.join('imgs','bird1.png'))),
-    pygame.transform.scale2x(pygame.image.load(os.path.join('imgs','bird2.png'))),
-    pygame.transform.scale2x(pygame.image.load(os.path.join('imgs','bird3.png'))),
-]
-
-pygame.font.init()
-FONTE_PONTOS = pygame.font.SysFont('arial', 50)
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
 
 class Passaro:
     IMGS = IMAGEM_PASSARO
@@ -56,11 +39,7 @@ class Passaro:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-<<<<<<< HEAD
         self.angulo = 0
-=======
-        self.amgulo = 0
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
         self.velocidade = 0
         self.altura = self.y
         self.tempo = 0
@@ -73,15 +52,9 @@ class Passaro:
         self.altura = self.y
 
     def mover(self):
-<<<<<<< HEAD
         # Calcular o deslocamento
         self.tempo += 1
         deslocamento = 1.5 * (self.tempo**2) + self.velocidade * self.tempo
-=======
-        # calcular o deslocamento
-        self.tempo += 1
-        deslocamento = 1.5 + (self.tempo**2) + self.velocidade * self.tempo
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
 
         # restringir o deslocamento
         if deslocamento > 16:
@@ -91,29 +64,20 @@ class Passaro:
 
         self.y += deslocamento
 
-<<<<<<< HEAD
         # angulo do passaro
-=======
-        # o angulo do passaro
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
         if deslocamento < 0 or self.y < (self.altura + 50):
             if self.angulo < self.ROTACAO_MAXIMA:
                 self.angulo = self.ROTACAO_MAXIMA
         else:
             if self.angulo > -90:
                 self.angulo -= self.VELOCIDADE_ROTACAO
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
     def desenhar(self, tela):
         # definir qual imagem do passaro vai usar
         self.contagem_imagem += 1
 
         if self.contagem_imagem < self.TEMPO_ANIMACAO:
             self.imagem = self.IMGS[0]
-<<<<<<< HEAD
         elif self.contagem_imagem < self.TEMPO_ANIMACAO * 2:
             self.imagem = self.IMGS[1]
         elif self.contagem_imagem < self.TEMPO_ANIMACAO * 3:
@@ -121,37 +85,20 @@ class Passaro:
         elif self.contagem_imagem < self.TEMPO_ANIMACAO * 4:
             self.imagem = self.IMGS[1]
         elif self.contagem_imagem < self.TEMPO_ANIMACAO * 4 + 1:
-=======
-        elif self.contagem_imagem < self.TEMPO_ANIMACAO*2:
-            self.imagem = self.IMGS[1]
-        elif self.contagem_imagen < self.TEMPO_ANIMACAO*3:
-            self.imagem = self.IMGS[2]
-        elif self.contagem_imagem < self.TEMPO_ANIMACAO*4:
-            self.imagem = self.IMGS[1]
-        elif self.contagem_imagem >= self.TEMPO_ANIMACAO*4 + 1:
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
             self.imagem = self.IMGS[0]
             self.contagem_imagem = 0
 
         # se o passaro tiver caindo eu não vou bater asa
         if self.angulo <= -80:
             self.imagem = self.IMGS[1]
-<<<<<<< HEAD
             self.contagem_imagem = self.TEMPO_ANIMACAO * 2
 
         # desenhar a imagem
         imagem_rotacionada = pygame.transform.rotate(self.imagem, self.angulo)
-=======
-            self.contagem_imagem = self.TEMPO_ANIMACAO*2
-
-        # desenhar a imagem
-        imagem_rotacionada = pygame.transform.potate(self.imagem, self.angulo)
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
         pos_centro_imagem = self.imagem.get_rect(topleft=(self.x, self.y)).center
         retangulo = imagem_rotacionada.get_rect(center=pos_centro_imagem)
         tela.blit(imagem_rotacionada, retangulo.topleft)
 
-<<<<<<< HEAD
     def get_mask(self):
         return pygame.mask.from_surface(self.imagem)
 
@@ -364,11 +311,3 @@ if __name__ == "__main__":
     caminho = os.path.dirname(__file__)
     caminho_config = os.path.join(caminho, "config.txt")
     rodar(caminho_config)
-=======
-
-class Cano:
-    pass
-
-class Chao:
-    pass
->>>>>>> f102e4f3bb163f47d536933924874b72025776a6
